@@ -1,4 +1,4 @@
-create or replace function dm.get_bookings()
+create or replace function dm.usp_get_bookings()
 returns table
 (
 booking_id BIGINT,
