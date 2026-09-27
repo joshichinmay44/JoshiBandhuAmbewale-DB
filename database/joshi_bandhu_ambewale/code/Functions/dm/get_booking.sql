@@ -3,14 +3,14 @@ returns table
 (
 booking_id BIGINT,
 customer_name VARCHAR(500),
-customer_address TEXT,
-customer_phone_number_calling VARCHAR(20),
-customer_phone_number_whatsapp VARCHAR(20),
-customer_mode VARCHAR(50),
-customer_type VARCHAR(50),
 sku_name VARCHAR(500),
 sku_units NUMERIC(19,4),
 booked_quantity_in_doz NUMERIC(19,4),
+customer_mode VARCHAR(50),
+customer_address TEXT,
+customer_phone_number_calling VARCHAR(20),
+customer_phone_number_whatsapp VARCHAR(20),
+customer_type VARCHAR(50),
 sale_booked_by VARCHAR(500),
 booking_date TIMESTAMP
 )
@@ -22,14 +22,14 @@ begin
 	SELECT 
 	b.booking_id, 
 	concat(c.first_name, ' ', c.last_name)::VARCHAR(500) as customer_name,
-	concat(a.street, ' ', a.city,'-', a.postal_code) as customer_address,
-	c.phone_number_calling,
-	c.phone_number_whatsapp,
-	c.customer_mode,
-	c.customer_type,
 	s.sku_name,
 	s.sku_units,
 	b.quantity,
+	c.customer_mode as delivery_mode,
+	concat(a.street, ' ', a.city,'-', a.postal_code) as delivery_address,
+	c.phone_number_calling as calling_number,
+	c.phone_number_whatsapp as whatsapp_number,
+	c.customer_type,
 	concat(sl.first_name, ' ', sl.last_name)::VARCHAR(500) as sale_booked_by,
 	b.booking_date
 	FROM dm.booking b

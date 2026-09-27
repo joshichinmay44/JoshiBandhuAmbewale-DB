@@ -12,6 +12,7 @@ CREATE TABLE IF NOT EXISTS dm.booking (
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     created_by VARCHAR(200),
     updated_by VARCHAR(200),
+    delivery_mode VARCHAR(50) CHECK (customer_mode IN ('Online', 'Offline')),
     FOREIGN KEY (customer_id) REFERENCES dim.customer(customer_id),
     FOREIGN KEY (sku_id) REFERENCES dim.sku(sku_id),
     FOREIGN KEY (address_id) REFERENCES dim.address(address_id),
